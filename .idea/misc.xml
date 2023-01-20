@@ -3,6 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Documentos/Proyecto Panaderia/app_pan/app/src/main/res/layout/fragment_panaderia.xml" value="0.2" />
+        <entry key="..\:/Documentos/Proyecto Panaderia/app_pan/app/src/main/res/layout/fragment_recomendaciones.xml" value="0.22" />
+        <entry key="..\:/Documentos/Proyecto Panaderia/app_pan/app/src/main/res/layout/item_cafeteria.xml" value="0.2" />
+        <entry key="..\:/Documentos/Proyecto Panaderia/app_pan/app/src/main/res/layout/item_panaderia.xml" value="0.2" />
+        <entry key="..\:/Documentos/Proyecto Panaderia/app_pan/app/src/main/res/layout/item_pasteleria.xml" value="0.2" />
+        <entry key="..\:/Documentos/Proyecto Panaderia/app_pan/app/src/main/res/layout/item_pedido.xml" value="0.2" />
+        <entry key="..\:/Documentos/Proyecto Panaderia/app_pan/app/src/main/res/layout/item_recomendacion.xml" value="0.19895833333333332" />
+        <entry key="..\:/Documentos/Proyecto Panaderia/app_pan/app/src/main/res/layout/item_recomendaciones.xml" value="0.19895833333333332" />
+        <entry key="..\:/Documentos/Proyecto Panaderia/app_pan/app/src/main/res/menu/bottom_navigation.xml" value="0.1" />
+        <entry key="..\:/Documentos/Proyecto Panaderia/app_pan/app/src/main/res/menu/menu_cafeteria.xml" value="0.16944444444444445" />
+        <entry key="..\:/Documentos/Proyecto Panaderia/app_pan/app/src/main/res/menu/menu_navigation.xml" value="0.16944444444444445" />
         <entry key="..\:/Proyectos/ProyectosAndroidStudio/NegocioDiseoPanaderia/app/src/main/res/drawable/bg_round.xml" value="0.33489583333333334" />
         <entry key="..\:/Proyectos/ProyectosAndroidStudio/NegocioDiseoPanaderia/app/src/main/res/drawable/editext_border.xml" value="0.33489583333333334" />
         <entry key="..\:/Proyectos/ProyectosAndroidStudio/NegocioDiseoPanaderia/app/src/main/res/drawable/ic_calendar.xml" value="0.33489583333333334" />
@@ -81,10 +92,13 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_16_PREVIEW" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="SuppressKotlinCodeStyleNotification">
+    <option name="disableForAll" value="true" />
   </component>
 </project>

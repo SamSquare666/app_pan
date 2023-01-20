@@ -17,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,6 +29,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -35,36 +37,53 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
+import org.json.JSONArray;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import devpaul.business.empresaexample.controlador.ViewHolderPanaderia;
 import devpaul.business.empresaexample.modelo.Panaderia;
 import devpaul.business.empresaexample.R;
+import devpaul.business.empresaexample.network.AdapterReomendaciones;
+import devpaul.business.empresaexample.network.ApiClient;
+import devpaul.business.empresaexample.network.ApiRecomendaciones;
+import devpaul.business.empresaexample.network.recomendaciones;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class PanaderiaFragment extends Fragment {
 
-    private SharedPreferences mSharedPref;
-    private RecyclerView mRecyclerView;
-    private FirebaseDatabase mFirebaseDatabase;
-    private ProgressDialog progressDialog;
-    private DatabaseReference mRef;
+    private RecyclerView recyclerview;
+    private recomendaciones TaxiElemento;
+    private ArrayList<recomendaciones> lista;
+    private JSONArray jlista;
+
+   // private RequestQueue RequestQueue;
+
+    private List<recomendaciones> movies;
+    private AdapterReomendaciones adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_panaderia, container, false);
+        View view = inflater.inflate(R.layout.fragment_recomendaciones, container, false);
 
         Toolbar toolbar = view.findViewById(R.id.toolbar_main);
         ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
 
-        mRecyclerView = view.findViewById(R.id.recyclerView);
-        mRecyclerView.setHasFixedSize(true);
+        recyclerview = view.findViewById(R.id.recycler_view);
+        recyclerview.setHasFixedSize(true);
+        recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
+        System.out.println("Fragment Panaderia");
+        recomendacionesjson();
 
-        mSharedPref = requireActivity().getSharedPreferences("SortSettings", MODE_PRIVATE);
+        //mSharedPref = requireActivity().getSharedPreferences("SortSettings", MODE_PRIVATE);
 
       /*  ImageButton recargar = view.findViewById(R.id.img_principal);
         recargar.setOnClickListener(view1 -> {
@@ -74,11 +93,38 @@ public class PanaderiaFragment extends Fragment {
             requireActivity().overridePendingTransition(0, 0);
         });
 */
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mRef = mFirebaseDatabase.getReference("Panaderia");
+      //  mFirebaseDatabase = FirebaseDatabase.getInstance();
+        //mRef = mFirebaseDatabase.getReference("Panaderia");
 
         return  view;
+
     }
+    private void recomendacionesjson() {
+        Call<recomendaciones> call= ApiClient.getClient().create(ApiRecomendaciones.class).getRecomendaciones();
+        System.out.println(call.toString());
+        call.enqueue(new Callback<recomendaciones>(){
+
+            @Override
+            public void onResponse(retrofit2.Call<recomendaciones> call, retrofit2.Response<recomendaciones> response) {
+                if(response.isSuccessful()){
+
+                    movies=  response.body().getRecomendacionesList();
+                    System.out.println("taxis:"+movies.toString());
+                    adapter=new AdapterReomendaciones(getContext(),movies);
+                    recyclerview.setAdapter(adapter);
+
+                }
+            }
+
+            @Override
+            public void onFailure(retrofit2.Call<recomendaciones> call, Throwable t) {
+                System.out.println("ERROR DE CONEXION"+call+"\n"+t);
+            }
+        });
+    }
+
+
+    /*
 
     private void firebaseSearch(String searchText){
         String query = searchText.toLowerCase();
@@ -259,10 +305,9 @@ public class PanaderiaFragment extends Fragment {
                 vistaCarrito();
                 return true;*/
         }
-        return super.onOptionsItemSelected(item);
+        //return super.onOptionsItemSelected(item);
 
-    }
+    //}*/
 
 
 
-}

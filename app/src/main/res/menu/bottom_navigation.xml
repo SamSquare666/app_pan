@@ -15,7 +15,7 @@
 
     <item
         android:id="@+id/nav_panaderia"
-        android:icon="@drawable/ic_panaderia"
-        android:title="Panaderìa"/>
+        android:icon="@drawable/ic_baseline_recommend_24"
+        android:title="Recomendaciones"/>
 
 </menu>
